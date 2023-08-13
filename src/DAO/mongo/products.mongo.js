@@ -1,6 +1,6 @@
 import { ProductModel } from "./models/products.model.js";
 
-class ProductsMongo {
+export default class ProductsMongo {
   constructor() {}
 
   getAllProducts = async () => {
@@ -59,4 +59,4 @@ class ProductsMongo {
   };
 }
 
-export const productsMongo = new ProductsMongo();
+// export const productsMongo = new ProductsMongo();
