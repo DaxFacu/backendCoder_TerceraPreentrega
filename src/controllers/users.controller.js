@@ -26,6 +26,75 @@ class UsersController {
       data: users,
     });
   };
+
+  createUser = async (req, res) => {
+    try {
+      const { firstName, lastName, email } = req.body;
+      const userCreated = await userService.createUser(
+        firstName,
+        lastName,
+        email
+      );
+
+      return res.status(201).json({
+        status: "success",
+        msg: "user created",
+        data: userCreated,
+      });
+    } catch (e) {
+      console.log(e);
+      return res.status(500).json({
+        status: "error",
+        msg: "something went wrong :(",
+        data: {},
+      });
+    }
+  };
+
+  updateUser = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { firstName, lastName, email } = req.body;
+
+      const userUptaded = await userService.updateUser(
+        id,
+        firstName,
+        lastName,
+        email
+      );
+      return res.status(201).json({
+        status: "success",
+        msg: "user uptaded",
+        data: userUptaded,
+      });
+    } catch (e) {
+      console.log(e);
+      return res.status(500).json({
+        status: "error",
+        msg: "something went wrong :(",
+        data: {},
+      });
+    }
+  };
+
+  deleteUser = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deleted = await userService.deleteUser(id);
+      return res.status(200).json({
+        status: "success",
+        msg: "user deleted",
+        data: {},
+      });
+    } catch (e) {
+      console.log(e);
+      return res.status(500).json({
+        status: "error",
+        msg: "something went wrong :(",
+        data: {},
+      });
+    }
+  };
 }
 
 export const usersController = new UsersController();

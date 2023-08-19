@@ -1,4 +1,4 @@
-import { UserModel } from "../DAO/models/users.model.js";
+import UserMongo from "../DAO/mongo/users.mongo.js";
 
 class UserService {
   // validatePostUser(firstName, lastName, email) {

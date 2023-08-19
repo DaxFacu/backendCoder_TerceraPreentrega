@@ -1,41 +1,38 @@
-import { CartModel } from "../DAO/models/carts.model.js";
+import CartMongo from "../DAO/mongo/carts.mongo.js";
 
 class CartsService {
-  async getAllCarts() {
-    const carts = await CartModel.find();
+  getAllCarts = async () => {
+    const carts = await CartMongo.getAllCarts();
     return carts;
-  }
+  };
 
-  async createCart() {
-    const cartCreated = await CartModel.create({
+  createCart = async () => {
+    const cartCreated = await CartMongo.createCart({
       products: [],
       quantity: 0,
     });
     return cartCreated;
-  }
+  };
 
-  async findCart(id) {
-    const cartFind = await CartModel.findOne({ _id: id });
+  findCart = async (id) => {
+    const cartFind = await CartMongo.findCart(id);
     return cartFind;
-  }
+  };
 
-  async updateCart(cid, products) {
-    const cartUpdated = await CartModel.updateOne(
-      { _id: cid },
-      { products: { ...products } }
-    );
+  updateCart = async (cid, products) => {
+    const cartUpdated = await CartMongo.updateCart(cid, products);
     return cartUpdated;
-  }
+  };
 
-  async deleteProductsCard(cid) {
-    const deleted = await CartModel.updateOne({ _id: cid }, { products: {} });
+  deleteProductsCard = async (cid) => {
+    const deleted = await CartMongo.deleteProductsCard(cid);
     return deleted;
-  }
+  };
 
-  async deleteCard(cid) {
-    const deleted = await CartModel.deleteOne({ _id: cid });
+  deleteCard = async (cid) => {
+    const deleted = await CartMongo.deleteCard(cid);
     return deleted;
-  }
+  };
 }
 
 //   async deleteProductCard(cid, pid) {

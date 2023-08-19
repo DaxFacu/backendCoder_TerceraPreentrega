@@ -1,13 +1,12 @@
 import ProductsMongo from "../DAO/mongo/products.mongo.js";
 
 class ProductsService {
-  getAllProducts = () => {
-    const products = ProductsMongo.getAllProducts;
-
+  getAllProducts = async () => {
+    const products = await ProductsMongo.getAllProducts();
     return products;
   };
 
-  createProduct = (
+  createProduct = async (
     title,
     description,
     code,
@@ -19,7 +18,7 @@ class ProductsService {
     id
   ) => {
     console.log(title);
-    const productCreated = ProductsMongo.createProduct({
+    const productCreated = await ProductsMongo.createProduct(
       title,
       description,
       code,
@@ -28,12 +27,12 @@ class ProductsService {
       stock,
       category,
       thumbnail,
-      id,
-    });
+      id
+    );
     return productCreated;
   };
 
-  updateProduct = (
+  updateProduct = async (
     id,
     title,
     description,
@@ -44,15 +43,22 @@ class ProductsService {
     category,
     thumbnail
   ) => {
-    const productUpdated = ProductsMongo.updateProduct(
-      { _id: id },
-      { title, description, code, price, status, stock, category, thumbnail }
+    const productUpdated = await ProductsMongo.updateProduct(
+      id,
+      title,
+      description,
+      code,
+      price,
+      status,
+      stock,
+      category,
+      thumbnail
     );
     return productUpdated;
   };
 
-  deleteProduct = (id) => {
-    const deleted = ProductsMongo.deleteProduct({ _id: id });
+  deleteProduct = async (id) => {
+    const deleted = await ProductsMongo.deleteProduct(id);
     return deleted;
   };
 }

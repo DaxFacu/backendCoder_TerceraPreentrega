@@ -1,5 +1,6 @@
 import express from "express";
-import { UserModel } from "../DAO/models/users.model.js";
+import usertDTO from "../DAO/DTO/user.dto.js";
+import { UserModel } from "../DAO/mongo/models/users.model.js";
 import { isValidPassword, createHash } from "../utils/utils.js";
 import passport from "passport";
 
@@ -73,9 +74,10 @@ loginRouter.get("/logout", (req, res) => {
 });
 
 loginRouter.use("/current", (req, res) => {
+  const user = usertDTO.UsertDTO;
   return res.status(200).json({
     status: "success",
     msg: "datos de la session",
-    payload: req.session.user || {},
+    payload: user || {}, //req.session.user || {},
   });
 });

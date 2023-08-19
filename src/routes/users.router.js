@@ -5,6 +5,12 @@ export const routerUsers = express.Router();
 
 routerUsers.get("/", usersController.getAllUsers);
 
+routerUsers.post("/", usersController.createUser);
+
+routerUsers.post("/", usersController.updateUser);
+
+routerUsers.post("/", usersController.deleteUser);
+
 // routerUsers.get("/", async (req, res) => {
 //   try {
 //     const users = await userService.getAllUsers();

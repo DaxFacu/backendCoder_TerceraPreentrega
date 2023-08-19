@@ -3,13 +3,13 @@ export default class Products {
     this.products = [];
   }
 
-  getAllProducts = () => {
-    const products = ProductModel.find();
+  getAllProducts = async () => {
+    const products = await ProductModel.find();
 
     return products;
   };
 
-  createProduct = (
+  createProduct = async (
     title,
     description,
     code,
@@ -21,7 +21,7 @@ export default class Products {
     id
   ) => {
     console.log(title);
-    const productCreated = ProductModel.create({
+    const productCreated = await ProductModel.create({
       title,
       description,
       code,
@@ -35,7 +35,7 @@ export default class Products {
     return productCreated;
   };
 
-  updateProduct = (
+  updateProduct = async (
     id,
     title,
     description,
@@ -46,15 +46,15 @@ export default class Products {
     category,
     thumbnail
   ) => {
-    const productUpdated = ProductModel.updateOne(
+    const productUpdated = await ProductModel.updateOne(
       { _id: id },
       { title, description, code, price, status, stock, category, thumbnail }
     );
     return productUpdated;
   };
 
-  deleteProduct = (id) => {
-    const deleted = ProductModel.deleteOne({ _id: id });
+  deleteProduct = async (id) => {
+    const deleted = await ProductModel.deleteOne({ _id: id });
     return deleted;
   };
 }

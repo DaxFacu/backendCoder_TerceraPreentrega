@@ -36,5 +36,6 @@ routerCarts.put("/:cid", cartsController.Update);
 //     });
 //   }
 // });
-
 routerCarts.delete("/:cid", cartsController.Delete);
+
+//routerCarts.purchase("/:cid/purchase", cartsController.Purchase);

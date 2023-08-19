@@ -1,5 +1,7 @@
 import express from "express";
 import { productsController } from "../controllers/products.controllers.js";
+import { ProductModel } from "../DAO/mongo/models/products.model.js";
+import { checkAdmin } from "../middlewares/auth.js";
 
 export const routerProducts = express.Router();
 
@@ -47,8 +49,8 @@ routerProducts.get("/", async (req, res) => {
   }
 });
 
-routerProducts.post("/", productsController.Create);
+routerProducts.post("/", checkAdmin, productsController.Create);
 
-routerProducts.put("/:id", productsController.Update);
+routerProducts.put("/:id", checkAdmin, productsController.Update);
 
-routerProducts.delete("/:id", productsController.Delete);
+routerProducts.delete("/:id", checkAdmin, productsController.Delete);

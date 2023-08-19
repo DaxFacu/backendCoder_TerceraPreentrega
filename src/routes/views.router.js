@@ -83,6 +83,8 @@ viewsRouter.get("/products", async (req, res) => {
       };
     });
 
+    console.log(product);
+
     res.render("products", {
       status: "success",
       userName: userName,

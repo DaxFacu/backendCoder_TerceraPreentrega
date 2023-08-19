@@ -23,7 +23,7 @@ class ProductsController {
         category,
         thumbnail
       );
-
+      console.log(title + " 01");
       return res.status(201).json({
         status: "success",
         msg: "user created",
